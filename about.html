@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - HelpMate</title>
+    <link rel="stylesheet" href="styles/homepage.css">
+    <link rel="stylesheet" href="about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <!-- Modern Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo Section -->
+            <div class="navbar-logo">
+                <div class="logo-icon">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="18" fill="url(#logoGradient)" stroke="#3b82f6" stroke-width="2"/>
+                        <path d="M12 20h6m0 0l-3-3m3 3l-3 3m10-6v6m0 0l-3-3m3 3l3-3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#54b796"/>
+                                <stop offset="100%" style="stop-color:#3b82f6"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="brand-name">HelpMate</span>
+                    <span class="brand-tagline">Home Services</span>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <div class="navbar-nav">
+                <a href="index.html" class="nav-link">
+                    <span class="nav-icon">🏠</span>
+                    <span>Home</span>
+                </a>
+                <a href="index.html#bestoffer" class="nav-link">
+                    <span class="nav-icon">🎯</span>
+                    <span>Offers</span>
+                </a>
+                <a href="index.html#appliance" class="nav-link">
+                    <span class="nav-icon">🔧</span>
+                    <span>Appliances</span>
+                </a>
+                <a href="#" class="nav-link active">
+                    <span class="nav-icon">ℹ️</span>
+                    <span>About</span>
+                </a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="navbar-actions">
+                <button class="action-btn secondary">
+                    <span class="btn-icon">👨‍💼</span>
+                    <span>Join as Professional</span>
+                </button>
+                <a href="Track.html" class="action-btn primary">
+                    <span class="btn-icon">📋</span>
+                    <span>My Bookings</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-btn" onclick="toggleMobileNav()">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-content">
+                <a href="index.html" class="mobile-nav-link">
+                    <span class="nav-icon">🏠</span>
+                    <span>Home</span>
+                </a>
+                <a href="product.html" class="mobile-nav-link">
+                    <span class="nav-icon">💇‍♂️</span>
+                    <span>Men's Salon</span>
+                </a>
+                <a href="index.html#bestoffer" class="mobile-nav-link">
+                    <span class="nav-icon">🎯</span>
+                    <span>Offers</span>
+                </a>
+                <a href="index.html#appliance" class="mobile-nav-link">
+                    <span class="nav-icon">🔧</span>
+                    <span>Appliances</span>
+                </a>
+                <a href="#" class="mobile-nav-link active">
+                    <span class="nav-icon">ℹ️</span>
+                    <span>About</span>
+                </a>
+                <div class="mobile-nav-divider"></div>
+                <a href="#" class="mobile-nav-link">
+                    <span class="nav-icon">👨‍💼</span>
+                    <span>Join as Professional</span>
+                </a>
+                <a href="Track.html" class="mobile-nav-link">
+                    <span class="nav-icon">📋</span>
+                    <span>My Bookings</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">🚀</span>
+                    <span>Transforming Home Services Since 2024</span>
+                </div>
+                <h1 class="hero-title">
+                    About <span class="gradient-text">HelpMate</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Your trusted partner in bringing professional home services right to your doorstep. 
+                    We're not just a service platform - we're a community dedicated to making your life easier.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Skilled Professionals</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Services Offered</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <span class="card-icon">💇‍♂️</span>
+                    <span class="card-text">Men's Salon</span>
+                </div>
+                <div class="floating-card card-2">
+                    <span class="card-icon">🧹</span>
+                    <span class="card-text">House Cleaning</span>
+                </div>
+                <div class="floating-card card-3">
+                    <span class="card-icon">🔧</span>
+                    <span class="card-text">Appliance Repair</span>
+                </div>
+                <div class="floating-card card-4">
+                    <span class="card-icon">💆‍♂️</span>
+                    <span class="card-text">Massage Therapy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Story Section -->
+    <section class="story-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Story</h2>
+                <p class="section-subtitle">From a simple idea to revolutionizing home services</p>
+            </div>
+            
+            <div class="story-content">
+                <div class="story-text">
+                    <div class="story-item">
+                        <div class="story-icon">💡</div>
+                        <div class="story-details">
+                            <h3>The Beginning</h3>
+                            <p>HelpMate was born out of a simple frustration - finding reliable home service professionals was always a hassle. Long waiting times, unreliable service providers, and lack of transparency in pricing were common issues that every homeowner faced.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="story-item">
+                        <div class="story-icon">🎯</div>
+                        <div class="story-details">
+                            <h3>The Mission</h3>
+                            <p>We set out to create a platform that connects skilled professionals with homeowners seamlessly. Our mission is to make home services accessible, affordable, and absolutely trustworthy for everyone.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="story-item">
+                        <div class="story-icon">🌟</div>
+                        <div class="story-details">
+                            <h3>The Vision</h3>
+                            <p>To become India's most trusted home services platform, where quality meets convenience. We envision a world where getting professional help for your home is as easy as ordering food online.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-visual">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2024</div>
+                            <div class="timeline-content">
+                                <h4>Founded HelpMate</h4>
+                                <p>Started with men's salon services in Bhopal</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2024</div>
+                            <div class="timeline-content">
+                                <h4>Expanded Services</h4>
+                                <p>Added cleaning and appliance repair services</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2025</div>
+                            <div class="timeline-content">
+                                <h4>Multi-City Launch</h4>
+                                <p>Expanding to major cities across Madhya Pradesh</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="founder-section">
+        <div class="container">
+            <div class="founder-content">
+                <div class="founder-image">
+                    <div class="founder-avatar">
+                        <div class="avatar-placeholder">
+                            <span class="avatar-initials"><img style="border-radius: 50%; ;" src="https://lh3.googleusercontent.com/a/ACg8ocJwh_H2QExbuAwVghn58z8t4GckN0_-M-8CrR1K9U7NLRJAkxrXEw=s360-c-no" alt=""></span>
+                        </div>
+                        <div class="founder-badge">
+                            <span>👨‍💻</span>
+                            <span>Founder & CEO</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="founder-info">
+                    <div class="founder-header">
+                        <h2 class="founder-name">Balram Prajapati</h2>
+                        <p class="founder-title">Founder & Chief Executive Officer</p>
+                    </div>
+                    
+                    <div class="founder-story">
+                        <p class="founder-quote">
+                            "I believe that everyone deserves access to quality home services without the hassle of searching, negotiating, or worrying about reliability."
+                        </p>
+                        
+                        <div class="founder-details">
+                            <h3>About Balram</h3>
+                            <p>
+                                A passionate entrepreneur and technology enthusiast, Balram founded HelpMate with a vision to revolutionize the home services industry in India. With a background in software development and a deep understanding of customer needs, he identified the gap between service providers and customers.
+                            </p>
+                            
+                            <p>
+                                Born and raised in Madhya Pradesh, Balram understands the local market and customer preferences. His journey started when he realized how difficult it was for his own family to find reliable home service professionals. This personal experience drove him to create a solution that benefits both customers and service providers.
+                            </p>
+                            
+                            <div class="founder-highlights">
+                                <div class="highlight-item">
+                                    <span class="highlight-icon">🎓</span>
+                                    <div>
+                                        <h4>Education</h4>
+                                        <p>Computer Science Graduate with expertise in Full-Stack Development</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="highlight-item">
+                                    <span class="highlight-icon">💼</span>
+                                    <div>
+                                        <h4>Experience</h4>
+                                        <p>2+ years in software development and digital product management</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="highlight-item">
+                                    <span class="highlight-icon">🌟</span>
+                                    <div>
+                                        <h4>Passion</h4>
+                                        <p>Creating technology solutions that solve real-world problems</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Core Values</h2>
+                <p class="section-subtitle">The principles that guide everything we do</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Trust & Reliability</h3>
+                    <p>Every professional on our platform is thoroughly vetted and verified. We ensure you get reliable service every time.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Speed & Efficiency</h3>
+                    <p>We understand your time is valuable. Our streamlined booking process gets you the help you need, fast.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">💰</div>
+                    <h3>Fair Pricing</h3>
+                    <p>Transparent pricing with no hidden costs. You know exactly what you're paying for before booking.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Quality Service</h3>
+                    <p>We maintain high standards and continuously train our professionals to deliver exceptional service.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">📱</div>
+                    <h3>Innovation</h3>
+                    <p>We leverage technology to make home services more accessible and convenient than ever before.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h3>Customer First</h3>
+                    <p>Your satisfaction is our priority. We're always here to help and ensure you have a great experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Experience the Difference?</h2>
+                <p class="cta-subtitle">Join thousands of satisfied customers who trust HelpMate for their home service needs.</p>
+                <div class="cta-buttons">
+                    <a href="index.html" class="cta-btn primary">
+                        <span>🏠</span>
+                        <span>Explore Services</span>
+                    </a>
+                    <a href="product.html" class="cta-btn secondary">
+                        <span>💇‍♂️</span>
+                        <span>Book Men's Salon</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer">
+        <div class="footer-content">
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="">Terms & Conditions</a>
+                <a href="">Privacy Policy</a>
+            </div>
+            
+            <!-- Services -->
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <a href="product.html">Men's Salon</a>
+                <a href="">Cleaning Services</a>
+                <a href="">Appliance Repair</a>
+            </div>
+            
+            <!-- App Download -->
+            <div class="footer-section app-section">
+                <h3>Download Our App</h3>
+                <div class="app-buttons">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="Google Play Store">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-brand">
+                <h2>HelpMate</h2>
+                <p>Your trusted home services partner</p>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2025 HelpMate Technologies India Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle function
+        function toggleMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            mobileNav.classList.toggle('active');
+            menuBtn.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const mobileNav = document.getElementById('mobileNav');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!mobileNav.contains(e.target) && !menuBtn.contains(e.target)) {
+                mobileNav.classList.remove('active');
+                menuBtn.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.story-item, .value-card, .timeline-item');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

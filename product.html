@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon for Men</title>
+    <script src="https://kit.fontawesome.com/cf90a6dd12.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="product.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Navigation Header -->
+    <div class="nav-header">
+        <a href="index.html" class="back-btn">
+            <span class="back-icon">←</span>
+            <span>Back to Home</span>
+        </a>
+        <div class="page-title">
+            <span class="title-icon">💇‍♂️</span>
+            <span>Men's Salon Services</span>
+        </div>
+        <div class="nav-right">
+            <a href="prePayment.html" class="cart-btn">
+                <span class="cart-icon">🛒</span>
+                <span>Cart</span>
+                <span class="cart-count" id="cartCount">0</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- // ads portioon  -->
+
+   <div id="product-ads" class="flex  h-75  items-center justify-between p-8 bg-white rounded-lg shadow-lg max-w-full ">
+  
+  <!-- Left: Image + Info -->
+  <div class="flex items-center gap-11">
+    
+    <!-- Gentleman Image -->
+    <div class="h-[150px] w-[150px] overflow-hidden rounded-lg shadow-md animate-pulse group-hover:animate-none hover:-translate-y-1 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 cursor-pointer group">
+      <img src="https://media.istockphoto.com/id/1468742588/vector/gentleman-face-images-illustration.jpg?s=612x612&w=0&k=20&c=viZpYgTT1aAGhxRGD2puqU1yXIReZp4kmDXIk_fNXjI="
+           alt="Gentleman Face"
+           class="w-full h-full object-cover  " />
+    </div>
+
+    <!-- Text Info -->
+    <div class="product-info space-y-2">
+      <button class="flex items-center gap-2 px-3 py-1 border-indigo-300 text-green-700 rounded-full text-sm shadow">
+        <img class="w-5 h-5" src="https://icons.iconarchive.com/icons/icons8/windows-8/512/Security-Security-Checked-icon.png" alt="UC Safe Icon">
+        UC Safe
+      </button>
+
+      <h1 class="text-5xl  font-extrabold text-white">Salon For Men</h1>
+
+      <div class="rating flex items-center gap-2  text-white">
+        <img class="w-7 h-7" src="https://cdn-icons-png.flaticon.com/512/929/929495.png" alt="Star Icon">
+        <span class="text-md bg-gradient-to-br">4.76 (978K)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Video Advertisement -->
+  <!-- Right: Video Advertisement -->
+<div class="product-video w-[900px] h-[250px] mt-50 rounded-lg overflow-hidden relative">
+  <video autoplay loop muted playsinline class="w-full h-full object-cover mb-20 absolute top-[-5px] right-[-10px]">
+    <source src="/ads.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+
+</div>
+
+
+    <!-- filter part  -->
+    <div id="filterDiv" class="grid grid-cols-2 sm:grid-cols-4 gap-6 p-4 max-w-full mx-auto">
+    <div id="pkg" class="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 cursor-pointer group">
+        <img class="mx-auto mb-2 w-16 h-16 object-cover animate-pulse group-hover:animate-none"
+             src="https://res.cloudinary.com/urbanclap/image/upload/t_high_res_template,q_auto:low,f_auto/w_64,dpr_1,fl_progressive:steep,q_auto,c_limit/images/growth/luminosity/1646814042922-25f8f1.jpeg" alt="">
+        <p class="text-center font-semibold text-gray-700">Packages</p>
+        <button class="add-to-cart-btn" onclick="addToCart('Packages', 'Salon Package Deal', 299)">Add to Cart</button>
+    </div>
+
+    <div id="hrct" class="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 cursor-pointer group">
+        <img class="mx-auto mb-2 w-16 h-16 object-cover animate-pulse group-hover:animate-none"
+             src="https://res.cloudinary.com/urbanclap/image/upload/t_high_res_template,q_auto:low,f_auto/w_64,dpr_1,fl_progressive:steep,q_auto,c_limit/images/growth/home-screen/1631190374864-78f3e8.jpeg" alt="">
+        <p class="text-center font-semibold text-gray-700">Haircut for Men & Kid's</p>
+        <button class="add-to-cart-btn" onclick="addToCart('Haircut', 'Professional Haircut', 199)">Add to Cart</button>
+    </div>
+
+    <div id="hrclr" class="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 cursor-pointer group">
+        <img class="mx-auto mb-2 w-16 h-16 object-cover animate-pulse group-hover:animate-none"
+             src="https://res.cloudinary.com/urbanclap/image/upload/t_high_res_template,q_auto:low,f_auto/w_64,dpr_1,fl_progressive:steep,q_auto,c_limit/images/growth/home-screen/1631189933595-01692d.png" alt="">
+        <p class="text-center font-semibold text-gray-700">Hair Color</p>
+        <button class="add-to-cart-btn" onclick="addToCart('Hair Color', 'Professional Hair Coloring', 399)">Add to Cart</button>
+    </div>
+
+    <div id="msg" class="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 cursor-pointer group">
+        <img class="mx-auto mb-2 w-16 h-16 object-cover animate-pulse group-hover:animate-none"
+             src="https://res.cloudinary.com/urbanclap/image/upload/t_high_res_template,q_auto:low,f_auto/w_64,dpr_1,fl_progressive:steep,q_auto,c_limit/images/growth/home-screen/1631189905841-237b37.png" alt="">
+        <p class="text-center font-semibold text-gray-700">Massage Therapy</p>
+        <button class="add-to-cart-btn" onclick="addToCart('Massage', 'Relaxing Massage Therapy', 499)">Add to Cart</button>
+    </div>
+</div>
+
+    <div id="footer">
+     <!-- show product  -->
+     <div id="product">
+         <!-- append product here  -->
+     </div>
+</div>
+
+<script>
+// Cart functionality - use global cart variable
+function updateCartCount() {
+    const cartCount = document.getElementById('cartCount');
+    if (cartCount) {
+        const cart = JSON.parse(localStorage.getItem('helpmate_cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+        
+        // Add animation effect
+        cartCount.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            cartCount.style.transform = 'scale(1)';
+        }, 200);
+    }
+}
+
+function addToCart(category, name, price) {
+    // Get current cart data
+    let cart = JSON.parse(localStorage.getItem('helpmate_cart')) || [];
+    
+    // Check if item already exists in cart
+    const existingItem = cart.find(item => item.name === name);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        // Add default properties for items added from filter buttons
+        let defaultImage = "https://res.cloudinary.com/urbanclap/image/upload/t_high_res_template,q_auto:low,f_auto/w_64,dpr_1,fl_progressive:steep,q_auto,c_limit/images/growth/luminosity/1646814042922-25f8f1.jpeg";
+        
+        // Set specific images based on category
+        if (category === 'Haircut') {
+            defaultImage = "https://res.cloudinary.com/urbanclap/image/upload/t_high_res_template,q_auto:low,f_auto/w_64,dpr_1,fl_progressive:steep,q_auto,c_limit/images/growth/home-screen/1631190374864-78f3e8.jpeg";
+        } else if (category === 'Hair Color') {
+            defaultImage = "https://res.cloudinary.com/urbanclap/image/upload/t_high_res_template,q_auto:low,f_auto/w_64,dpr_1,fl_progressive:steep,q_auto,c_limit/images/growth/home-screen/1631189933595-01692d.png";
+        } else if (category === 'Massage') {
+            defaultImage = "https://res.cloudinary.com/urbanclap/image/upload/t_high_res_template,q_auto:low,f_auto/w_64,dpr_1,fl_progressive:steep,q_auto,c_limit/images/growth/home-screen/1631189905841-237b37.png";
+        }
+        
+        cart.push({
+            id: Date.now(),
+            category: category,
+            name: name,
+            price: price,
+            quantity: 1,
+            image_url: defaultImage,
+            rating: "4.8 (500+)",
+            time: "30-45 mins",
+            description: `Professional ${category.toLowerCase()} service at your doorstep`
+        });
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('helpmate_cart', JSON.stringify(cart));
+    
+    // Update cart count
+    updateCartCount();
+    
+    // Show success message
+    showToast(`${name} added to cart!`);
+}
+
+function showToast(message) {
+    // Create toast notification
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+        z-index: 10000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Animate in
+    setTimeout(() => {
+        toast.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        toast.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (document.body.contains(toast)) {
+                document.body.removeChild(toast);
+            }
+        }, 300);
+    }, 3000);
+}
+
+// Initialize cart count on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateCartCount();
+});
+</script>
+     
+</body>
+
+</html>
+<script src="../product.js"></script>

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - HelpMate</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #111827 0%, #374151 50%, #000000 100%);
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+
+    .payment-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .form-input {
+        transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .notification {
+        animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .modal-backdrop {
+        backdrop-filter: blur(5px);
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 1rem;
+        }
+        
+        .payment-card {
+            margin: 0.5rem;
+        }
+        
+        .grid-cols-1 {
+            gap: 1rem;
+        }
+    }
+</style>
+
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-2xl font-bold text-blue-600">
+                        <i class="fas fa-home mr-2"></i>HelpMate
+                    </a>
+                    <span class="text-gray-500">/ Payment</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="product.html" class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-arrow-left mr-1"></i>Back to Services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl font-bold text-white text-center mb-8">Checkout</h1>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Order Summary -->
+                <div class="payment-card p-6">
+                    <h2 class="text-2xl font-bold mb-6">Order Summary</h2>
+                    <div id="products" class="space-y-4 mb-6">
+                        <!-- Products will be loaded here -->
+                    </div>
+                    
+                    <!-- Payment Summary -->
+                    <div class="border-t pt-4 space-y-3">
+                        <div class="flex justify-between">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">₹0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Service Fee:</span>
+                            <span id="serviceFee">₹49</span>
+                        </div>
+                        <div class="flex justify-between text-green-600">
+                            <span>Discount:</span>
+                            <span id="discount">-₹0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Tax (18%):</span>
+                            <span id="tax">₹0</span>
+                        </div>
+                        <hr>
+                        <div class="flex justify-between text-xl font-bold">
+                            <span>Total:</span>
+                            <span id="getTotal">₹0</span>
+                        </div>
+                        <div class="flex justify-between text-2xl font-bold text-blue-600">
+                            <span>Final Amount:</span>
+                            <span id="getFinal">₹0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Form -->
+                <div class="payment-card p-6">
+                    <h2 class="text-2xl font-bold mb-6">Payment Details</h2>
+                    
+                    <form id="paymentForm" class="space-y-6">
+                        <!-- Contact Information -->
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Contact Information</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                    <input type="text" id="fullName" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                    <input type="tel" id="phone" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                    <input type="email" id="email" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Service Address</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Street Address</label>
+                                    <input type="text" id="address" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                                        <input type="text" id="city" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Pincode</label>
+                                        <input type="text" id="pincode" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Preferred Date & Time -->
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Preferred Schedule</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                                    <input type="date" id="serviceDate" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Time Slot</label>
+                                    <select id="timeSlot" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <option value="">Select Time</option>
+                                        <option value="09:00-12:00">9:00 AM - 12:00 PM</option>
+                                        <option value="12:00-15:00">12:00 PM - 3:00 PM</option>
+                                        <option value="15:00-18:00">3:00 PM - 6:00 PM</option>
+                                        <option value="18:00-21:00">6:00 PM - 9:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Payment Method</h3>
+                            <div class="space-y-3">
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="radio" name="paymentMethod" value="cod" class="text-blue-600" checked>
+                                    <span class="flex items-center">
+                                        <i class="fas fa-money-bill-wave mr-2 text-green-600"></i>
+                                        Cash on Delivery
+                                    </span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="radio" name="paymentMethod" value="upi" class="text-blue-600">
+                                    <span class="flex items-center">
+                                        <i class="fab fa-google-pay mr-2 text-blue-600"></i>
+                                        UPI Payment
+                                    </span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer">
+                                    <input type="radio" name="paymentMethod" value="card" class="text-blue-600">
+                                    <span class="flex items-center">
+                                        <i class="fas fa-credit-card mr-2 text-purple-600"></i>
+                                        Credit/Debit Card
+                                    </span>
+                                </label>
+                            </div>
+
+                            <!-- Card Details Form -->
+                            <div id="cardDetailsForm" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                                <h4 class="text-md font-semibold mb-3 text-purple-700">Card Details</h4>
+                                <div class="space-y-3">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Card Number</label>
+                                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" 
+                                               class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
+                                            <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5"
+                                                   class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium text-gray-700 mb-1">CVV</label>
+                                            <input type="text" id="cvv" placeholder="123" maxlength="4"
+                                                   class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Cardholder Name</label>
+                                        <input type="text" id="cardholderName" placeholder="John Doe"
+                                               class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- UPI Payment Form -->
+                            <div id="upiDetailsForm" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                                <h4 class="text-md font-semibold mb-3 text-blue-700">UPI Payment</h4>
+                                <div class="space-y-3">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">UPI ID</label>
+                                        <input type="text" id="upiId" placeholder="yourname@paytm" 
+                                               class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-sm text-gray-600 mb-3">Or scan QR code with any UPI app</p>
+                                        <div class="bg-white p-4 rounded-lg inline-block">
+                                            <img src="data:image/png;base64,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" 
+                                                 alt="UPI QR Code" class="w-32 h-32 mx-auto">
+                                        </div>
+                                        <p class="text-xs text-gray-500 mt-2">Pay ₹500 to HelpMate</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Special Instructions -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Special Instructions (Optional)</label>
+                            <textarea id="instructions" rows="3" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Any specific requirements or instructions..."></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="w-full btn-primary text-lg py-4">
+                            <i class="fas fa-check mr-2"></i>Confirm Booking
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-backdrop fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 text-center transform transition-all duration-300 scale-95">
+            <div class="text-green-500 mb-4">
+                <i class="fas fa-check-circle text-6xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Booking Confirmed!</h3>
+            <p class="text-gray-600 mb-6">Your Saloon service has been booked successfully. You will receive a confirmation call shortly.</p>
+            <div class="space-y-3">
+                <button onclick="downloadReceipt()" class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition-colors">
+                    <i class="fas fa-download mr-2"></i>Download Receipt
+                </button>
+                <button onclick="goToHome()" class="w-full bg-gray-500 text-white py-3 rounded-lg hover:bg-gray-600 transition-colors">
+                    <i class="fas fa-home mr-2"></i>Go to Home
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../prePayment.js"></script>
+    <script>
+        // Set minimum date to today
+        document.getElementById('serviceDate').min = new Date().toISOString().split('T')[0];
+
+        // Handle payment method changes
+        document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const cardForm = document.getElementById('cardDetailsForm');
+                const upiForm = document.getElementById('upiDetailsForm');
+                
+                // Hide all forms first
+                cardForm.classList.add('hidden');
+                upiForm.classList.add('hidden');
+                
+                // Show relevant form based on selection
+                if (this.value === 'card') {
+                    cardForm.classList.remove('hidden');
+                } else if (this.value === 'upi') {
+                    upiForm.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Format card number input
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+
+        // Format expiry date input
+        document.getElementById('expiryDate').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        // Format CVV input (numbers only)
+        document.getElementById('cvv').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+        });
+
+        // Form submission
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate form
+            if (!validateForm()) return;
+            
+            // Show loading
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+            submitBtn.disabled = true;
+
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            
+            // Simulate payment processing based on method
+            let processingTime = 2000; // Default for COD
+            
+            if (paymentMethod === 'card') {
+                processingTime = 3000; // Card processing takes longer
+                showNotification('Processing card payment...', 'info');
+            } else if (paymentMethod === 'upi') {
+                processingTime = 2500; // UPI processing
+                showNotification('Processing UPI payment...', 'info');
+            }
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Simulate payment success/failure
+                const isPaymentSuccessful = simulatePayment(paymentMethod);
+                
+                if (isPaymentSuccessful) {
+                    // Store booking details
+                    storeBookingDetails();
+                    
+                    // Clear cart
+                    localStorage.removeItem('cart');
+                    localStorage.removeItem('total');
+                    
+                    // Show success modal with animation
+                    const modal = document.getElementById('successModal');
+                    const modalContent = modal.querySelector('div');
+                    modal.classList.remove('hidden');
+                    setTimeout(() => {
+                        modalContent.classList.remove('scale-95');
+                        modalContent.classList.add('scale-100');
+                    }, 100);
+                    
+                    showNotification('Payment successful!', 'success');
+                } else {
+                    showNotification('Payment failed. Please try again.', 'error');
+                }
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, processingTime);
+        });
+
+        function simulatePayment(method) {
+            // Simulate payment processing with 95% success rate
+            const random = Math.random();
+            
+            if (method === 'cod') {
+                return true; // COD always succeeds
+            } else if (method === 'card') {
+                // Simulate card payment - 90% success rate
+                return random > 0.1;
+            } else if (method === 'upi') {
+                // Simulate UPI payment - 95% success rate
+                return random > 0.05;
+            }
+            
+            return false;
+        }
+
+        function validateForm() {
+            const requiredFields = ['fullName', 'phone', 'email', 'address', 'city', 'pincode', 'serviceDate', 'timeSlot'];
+            
+            for (let field of requiredFields) {
+                const element = document.getElementById(field);
+                if (!element.value.trim()) {
+                    element.focus();
+                    showNotification(`Please fill in ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`, 'error');
+                    return false;
+                }
+            }
+            
+            // Validate phone number
+            const phone = document.getElementById('phone').value;
+            if (!/^\d{10}$/.test(phone)) {
+                showNotification('Please enter a valid 10-digit phone number', 'error');
+                return false;
+            }
+            
+            // Validate email
+            const email = document.getElementById('email').value;
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showNotification('Please enter a valid email address', 'error');
+                return false;
+            }
+
+            // Validate payment method specific fields
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            
+            if (paymentMethod === 'card') {
+                if (!validateCardDetails()) return false;
+            } else if (paymentMethod === 'upi') {
+                if (!validateUpiDetails()) return false;
+            }
+            
+            return true;
+        }
+
+        function validateCardDetails() {
+            const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+            const expiryDate = document.getElementById('expiryDate').value;
+            const cvv = document.getElementById('cvv').value;
+            const cardholderName = document.getElementById('cardholderName').value.trim();
+
+            if (!cardNumber || cardNumber.length < 16) {
+                showNotification('Please enter a valid 16-digit card number', 'error');
+                document.getElementById('cardNumber').focus();
+                return false;
+            }
+
+            if (!expiryDate || !/^\d{2}\/\d{2}$/.test(expiryDate)) {
+                showNotification('Please enter expiry date in MM/YY format', 'error');
+                document.getElementById('expiryDate').focus();
+                return false;
+            }
+
+            // Check if expiry date is not in the past
+            const [month, year] = expiryDate.split('/');
+            const expiry = new Date(2000 + parseInt(year), parseInt(month) - 1);
+            const now = new Date();
+            if (expiry < now) {
+                showNotification('Card has expired', 'error');
+                document.getElementById('expiryDate').focus();
+                return false;
+            }
+
+            if (!cvv || cvv.length < 3) {
+                showNotification('Please enter a valid CVV', 'error');
+                document.getElementById('cvv').focus();
+                return false;
+            }
+
+            if (!cardholderName) {
+                showNotification('Please enter cardholder name', 'error');
+                document.getElementById('cardholderName').focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateUpiDetails() {
+            const upiId = document.getElementById('upiId').value.trim();
+            
+            if (!upiId) {
+                showNotification('Please enter your UPI ID', 'error');
+                document.getElementById('upiId').focus();
+                return false;
+            }
+
+            // Basic UPI ID validation
+            if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+$/.test(upiId)) {
+                showNotification('Please enter a valid UPI ID (e.g., name@paytm)', 'error');
+                document.getElementById('upiId').focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        function storeBookingDetails() {
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            let paymentDetails = { method: paymentMethod };
+
+            // Add payment specific details
+            if (paymentMethod === 'card') {
+                paymentDetails.cardNumber = '****' + document.getElementById('cardNumber').value.replace(/\s/g, '').slice(-4);
+                paymentDetails.cardholderName = document.getElementById('cardholderName').value;
+            } else if (paymentMethod === 'upi') {
+                paymentDetails.upiId = document.getElementById('upiId').value;
+            }
+
+            const bookingDetails = {
+                id: 'BK' + Date.now(),
+                date: new Date().toISOString(),
+                customer: {
+                    name: document.getElementById('fullName').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value
+                },
+                address: {
+                    street: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    pincode: document.getElementById('pincode').value
+                },
+                schedule: {
+                    date: document.getElementById('serviceDate').value,
+                    timeSlot: document.getElementById('timeSlot').value
+                },
+                payment: paymentDetails,
+                instructions: document.getElementById('instructions').value,
+                total: document.getElementById('getFinal').textContent || '₹500',
+                status: 'Confirmed'
+            };
+            
+            // Store in localStorage (in real app, send to server)
+            let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            bookings.push(bookingDetails);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+            localStorage.setItem('currentBooking', JSON.stringify(bookingDetails));
+        }
+
+        function downloadReceipt() {
+            const booking = JSON.parse(localStorage.getItem('currentBooking'));
+            
+            // Create new PDF document
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Set colors
+            const primaryColor = [102, 126, 234]; // Blue
+            const textColor = [31, 41, 55]; // Dark gray
+            const accentColor = [16, 185, 129]; // Green
+            
+            // Header
+            doc.setFillColor(...primaryColor);
+            doc.rect(0, 0, 210, 40, 'F');
+            
+            // Company logo/icon (using text for simplicity)
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(24);
+            doc.setFont(undefined, 'bold');
+            doc.text('🏠 HelpMate', 20, 25);
+            
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'normal');
+            doc.text('Professional Home Services', 20, 35);
+            
+            // Receipt title
+            doc.setTextColor(...textColor);
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text('BOOKING RECEIPT', 20, 60);
+            
+            // Booking ID and Date
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'normal');
+            doc.text(`Booking ID: ${booking.id}`, 20, 75);
+            doc.text(`Receipt Date: ${new Date(booking.date).toLocaleDateString('en-IN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            })}`, 20, 85);
+            
+            // Customer details section
+            doc.setTextColor(...primaryColor);
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.text('CUSTOMER DETAILS', 20, 105);
+            
+            doc.setTextColor(...textColor);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            let yPos = 115;
+            doc.text(`Name: ${booking.customer.name}`, 20, yPos);
+            doc.text(`Phone: ${booking.customer.phone}`, 20, yPos += 10);
+            doc.text(`Email: ${booking.customer.email}`, 20, yPos += 10);
+            
+            // Service address section
+            doc.setTextColor(...primaryColor);
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.text('SERVICE ADDRESS', 20, yPos += 20);
+            
+            doc.setTextColor(...textColor);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            doc.text(`${booking.address.street}`, 20, yPos += 10);
+            doc.text(`${booking.address.city} - ${booking.address.pincode}`, 20, yPos += 10);
+            
+            // Schedule section
+            doc.setTextColor(...primaryColor);
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.text('SCHEDULE', 20, yPos += 20);
+            
+            doc.setTextColor(...textColor);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            doc.text(`Service Date: ${new Date(booking.schedule.date).toLocaleDateString('en-IN')}`, 20, yPos += 10);
+            doc.text(`Time Slot: ${booking.schedule.timeSlot}`, 20, yPos += 10);
+            
+            // Payment details section
+            doc.setTextColor(...primaryColor);
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.text('PAYMENT DETAILS', 20, yPos += 20);
+            
+            doc.setTextColor(...textColor);
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'normal');
+            doc.text(`Payment Method: ${booking.payment.method.toUpperCase()}`, 20, yPos += 10);
+            
+            if (booking.payment.method === 'card') {
+                doc.text(`Card Number: ${booking.payment.cardNumber}`, 20, yPos += 10);
+                doc.text(`Cardholder: ${booking.payment.cardholderName}`, 20, yPos += 10);
+            } else if (booking.payment.method === 'upi') {
+                doc.text(`UPI ID: ${booking.payment.upiId}`, 20, yPos += 10);
+            }
+            
+            // Total amount box
+            doc.setFillColor(248, 250, 252);
+            doc.rect(20, yPos += 5, 170, 20, 'F');
+            doc.setTextColor(...accentColor);
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.text(`Total Amount: ${booking.total}`, 25, yPos += 13);
+            
+            // Status
+            doc.setTextColor(...textColor);
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'bold');
+            doc.text(`Status: `, 20, yPos += 25);
+            doc.setTextColor(...accentColor);
+            doc.text(`${booking.status}`, 50, yPos);
+            
+            // Special instructions if any
+            if (booking.instructions && booking.instructions.trim()) {
+                doc.setTextColor(...primaryColor);
+                doc.setFontSize(14);
+                doc.setFont(undefined, 'bold');
+                doc.text('SPECIAL INSTRUCTIONS', 20, yPos += 20);
+                
+                doc.setTextColor(...textColor);
+                doc.setFontSize(11);
+                doc.setFont(undefined, 'normal');
+                const splitInstructions = doc.splitTextToSize(booking.instructions, 170);
+                doc.text(splitInstructions, 20, yPos += 10);
+                yPos += (splitInstructions.length - 1) * 5;
+            }
+            
+            // Footer
+            doc.setFillColor(...primaryColor);
+            doc.rect(0, 280, 210, 17, 'F');
+            
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'normal');
+            doc.text('Thank you for choosing HelpMate! | Contact: +91-7489476604', 20, 290);
+            doc.text('www.helpmate.com | support@helpmate.com', 20, 295);
+            
+            // Save the PDF
+            doc.save(`HelpMate-Receipt-${booking.id}.pdf`);
+        }
+
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white transform transition-all duration-300 translate-x-full`;
+            
+            if (type === 'success') {
+                notification.classList.add('bg-green-500');
+            } else if (type === 'error') {
+                notification.classList.add('bg-red-500');
+            } else {
+                notification.classList.add('bg-blue-500');
+            }
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>HelpMate Company</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="product.css">
+  <link rel="stylesheet" href="homepage.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<style media="screen">
+  .carousel-cell {
+    width: 25%;
+    margin-right: 10px;
+  }
+
+  .carousel-cell:before {
+    display: block;
+  }
+</style>
+
+<body>
+  <!-- Modern Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <!-- Logo Section -->
+      <div class="navbar-logo">
+        <div class="logo-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" fill="url(#logoGradient)" stroke="#3b82f6" stroke-width="2"/>
+            <path d="M12 20h6m0 0l-3-3m3 3l-3 3m10-6v6m0 0l-3-3m3 3l3-3" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#54b796"/>
+                <stop offset="100%" style="stop-color:#3b82f6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="brand-name">HelpMate</span>
+          <span class="brand-tagline">Home Services</span>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation Links -->
+      <div class="navbar-nav">
+        <a href="#" class="nav-link active">
+          <span class="nav-icon">🏠</span>
+          <span>Home</span>
+        </a>
+        
+        <a href="#bestoffer" class="nav-link">
+          <span class="nav-icon">🎯</span>
+          <span>Offers</span>
+        </a>
+        <a href="#appliance" class="nav-link">
+          <span class="nav-icon">🔧</span>
+          <span>Appliances</span>
+        </a>
+        <a href="about.html" class="nav-link">
+          <span class="nav-icon">ℹ️</span>
+          <span>About</span>
+        </a>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="navbar-actions">
+        <button class="action-btn secondary">
+          <span class="btn-icon">👨‍💼</span>
+          <span>Join as Professional</span>
+        </button>
+        <a href="Track.html" class="action-btn primary">
+          <span class="btn-icon">📋</span>
+          <span>My Bookings</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-content">
+        <a href="#" class="mobile-nav-link active">
+          <span class="nav-icon">🏠</span>
+          <span>Home</span>
+        </a>
+        <a href="product.html" class="mobile-nav-link">
+          <span class="nav-icon">💇‍♂️</span>
+          <span>Men's Salon</span>
+        </a>
+        <a href="#bestoffer" class="mobile-nav-link">
+          <span class="nav-icon">🎯</span>
+          <span>Offers</span>
+        </a>
+        <a href="#appliance" class="mobile-nav-link">
+          <span class="nav-icon">🔧</span>
+          <span>Appliances</span>
+        </a>
+        <a href="about.html" class="mobile-nav-link">
+          <span class="nav-icon">ℹ️</span>
+          <span>About</span>
+        </a>
+        <div class="mobile-nav-divider"></div>
+        <a href="#" class="mobile-nav-link">
+          <span class="nav-icon">👨‍💼</span>
+          <span>Join as Professional</span>
+        </a>
+        <a href="Track.html" class="mobile-nav-link">
+          <span class="nav-icon">📋</span>
+          <span>My Bookings</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="outerdiv">
+    <!-- 1. home service div1 -->
+    <div id="div1">
+      <div></div>
+      <p> Home / Bhopal</p>
+      <h1 style="color:  rgb(248, 248, 248);">On Demand, Home Services</h1>
+      <div id="src">
+        <select class="text-black bg-sky-50 hover:bg-sky-100" id="city">
+          <option value="/" class="font-md ">Select City</option>
+          <option value="bhopal">Bhopal</option>
+          <option value="indore">Indore</option>
+          <option value="ujjain">Ujjain</option>
+          <option value="jabalpur">Jabalpur</option>
+          <option value="sagar">Sagar</option>
+          <option value="satna">Satna</option>
+          <option value="katni">Katni</option>
+          <option value="damoh">Damoh</option>
+        </select>
+
+        <!-- ADDED id="serviceInput" -->
+        <input id="serviceInput" class="bg-sky-50 text-black hover:bg-sky-100" type="text"
+          placeholder="Search for services" list="services">
+        <datalist id="services">
+          <option value="Hair services for Women">
+          <option value="Cleaning">
+          <option value="Women's Therapies">
+          <option value="men's salon">
+          <option value="Men's Therapies">
+          <option value="AC / Appliance Repair">
+        </datalist>
+
+        <!-- REMOVED <a> wrapper, made button type="button" and onclick -->
+        <button type="button" class="add-btn" onclick="scrollToService()">Search</button>
+        <button class="add-btn" onclick="document.getElementById('serviceInput').value = ''">Reset</button>
+      </div>
+      <br>
+      <div id="links">
+        <span>Plumber, Electrician, Barber, House Cleaning,Etc</span>
+      </div>
+    </div>
+
+        <!--2.  home service div 2 -->
+       <!-- 2. home service div2 -->
+    <div id="div2" class="service-panel">
+      <div>
+        <div style="cursor: pointer;" onclick="showComingSoonMessage()">
+        <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1629973621437-ce5af9.png"
+          alt="">
+        <span>Hair services for Women</span>
+        </div>
+      </div>
+      <div>
+        <div style="cursor: pointer;" onclick="showComingSoonMessage()">
+          <img src="https://res.cloudinary.com/urbanclap/image/upload/t_high_res_category/w_56,dpr_2,fl_progressive:steep,q_auto:low,f_auto,c_limit/images/growth/home-screen/1681711961404-75dfec.jpeg"
+            alt="">
+          <span>Cleaning</span>
+        </div>
+      </div>
+      <div>
+        <div style="cursor: pointer;" onclick="showComingSoonMessage()">
+        <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/categories/category_v2/category_1312fb60.png"
+          alt="">
+        <span>Women's Therapies</span>
+        </div>
+      </div>
+      <div class="text-black">
+        <a href="product.html" target="_blank">
+          <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1609757629780-2b2187.png"
+            alt="">
+          <span>men's salon</span>
+        </a>
+      </div>
+      <div>
+        <div style="cursor: pointer;" onclick="showComingSoonMessage()">
+        <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1609757731250-ba3308.png"
+          alt="">
+        <span>Men's Therapies</span>
+        </div>
+      </div>
+      <div>
+        <div style="cursor: pointer;" onclick="showComingSoonMessage()">
+        <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/categories/category_v2/category_72d18950.png"
+          alt="">
+        <span>AC / Appliance Repair</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!--3. special div  -->
+ <div class="w-full overflow-hidden bg-gray-100 py-4">
+  <div class="relative">
+    <div class="flex gap-6 animate-marquee whitespace-nowrap">
+      <!-- Your images -->
+      <img class="h-32 md:h-48 rounded-xl shadow-md flex-shrink-0" src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_568/t_high_res_template/images/growth/luminosity/1670236808636-f1d72e.jpeg" />
+      <img class="h-32 md:h-48 rounded-xl shadow-md flex-shrink-0" src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_568/t_high_res_template/images/growth/luminosity/1670833924412-eb2825.jpeg" />
+      <img class="h-32 md:h-48 rounded-xl shadow-md flex-shrink-0" src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_568/t_high_res_template/images/growth/luminosity/1670236804067-9a707d.jpeg" />
+      <img class="h-32 md:h-48 rounded-xl shadow-md flex-shrink-0" src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_568/t_high_res_template/images/growth/luminosity/1670833903513-3409ad.jpeg" />
+      <img class="h-32 md:h-48 rounded-xl shadow-md flex-shrink-0" src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_568/t_high_res_template/images/growth/luminosity/1670236785661-0598c2.jpeg" />
+      <img class="h-32 md:h-48 rounded-xl shadow-md flex-shrink-0" src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_568/t_high_res_template/images/growth/luminosity/1670236836216-f4b990.jpeg" />
+      
+      <!-- Duplicate images for continuous loop -->
+      <img class="h-32 md:h-48 rounded-xl shadow-md flex-shrink-0" src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_568/t_high_res_template/images/growth/luminosity/1670236808636-f1d72e.jpeg" />
+      <img class="h-32 md:h-48 rounded-xl shadow-md flex-shrink-0" src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_568/t_high_res_template/images/growth/luminosity/1670833903513-3409ad.jpeg" />
+      <img class="h-32 md:h-48 rounded-xl shadow-md flex-shrink-0" src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_568/t_high_res_template/images/growth/luminosity/1670236785661-0598c2.jpeg" />
+      <img class="h-32 md:h-48 rounded-xl shadow-md flex-shrink-0" src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_568/t_high_res_template/images/growth/luminosity/1670833924412-eb2825.jpeg" />
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Mobile optimization for marquee */
+@media (max-width: 768px) {
+  .animate-marquee {
+    animation: marquee 15s linear infinite;
+  }
+}
+
+@media (max-width: 480px) {
+  .animate-marquee {
+    animation: marquee 12s linear infinite;
+  }
+}
+</style>
+
+
+
+    <!-- 4. best offer div  -->
+    <div id="bestoffer">
+        <h1>Best Offers</h1>
+        <p>Hygienic & single-use products | low-contact services</p>
+        <br>
+        <div>
+            <div>
+                <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_532/t_high_res_category/images/growth/home-screen/1603078782132-dfcd55.jpeg"
+                    alt="">
+                <h5>Salon Prime</h5>
+                <p>Up to 50% Off</p>
+            </div>
+            <div>
+                <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_532/t_high_res_category/images/supply/customer-app-supply/1606211470897-f4afbc.jpeg"
+                    alt="">
+                <h5>Massage for Men</h5>
+                <p>Flat 20% Cashback</p>
+            </div>
+            <div>
+                <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_532/t_high_res_category/images/growth/home-screen/1625159882387-9585c7.jpeg"
+                    alt="">
+                <h5>Bathroom and Kitchen Cleaning</h5>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <!-- 5.appliance div  -->
+    <div id="appliance">
+        <h1>Appliances</h1>
+        <p>Servicing, Repair, Installation & Uninstallation</p>
+        <br>
+        <div>
+            <div>
+                <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_532/t_high_res_category/categories/category_v2/category_c0667020.png"
+                    alt="">
+                <h5>Geyser</h5>
+                <p></p>
+            </div>
+            <div>
+                <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_532/t_high_res_category/categories/category_v2/category_bbb8c690.png"
+                    alt="">
+                <h5>Water Purifier Service</h5>
+                <p>Up to 45% Off</p>
+            </div>
+            <div>
+                <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_532/t_high_res_category/categories/category_v2/category_b78221c0.png"
+                    alt="">
+                <h5>Washing Machine</h5>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <!-- 6.salon div  -->
+        <div id="salon">
+            <h1>Salon, Spa and Massage services</h1>
+            <p>Hygienic & Single use products | Low-contact services</p>
+            <br>
+            <div>
+                <div>
+                    <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_532/t_high_res_category/images/growth/home-screen/1603078782132-dfcd55.jpeg"
+                        alt="">
+                    <h5>Salon Prime</h5>
+                    <p>Up to 50% Off</p>
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_532/t_high_res_category/categories/category_v2/category_9b68f7b0.jpeg"
+                        alt="">
+                    <h5>Party Makeup</h5>
+                    <p>Artists trained by Chandni Singh Studio</p>
+                </div>
+                <div>
+                    <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_532/t_high_res_category/images/growth/home-screen/1601893536279-77bf02.png"
+                        alt="">
+                    <h5>Spa for Women</h5>
+                    <p>Free head massage</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 12.policy div  -->
+    <div class="small">
+        <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_1920/t_high_res_template/images/growth/home-screen/1624344861242-558286.png"
+            alt="">
+
+    </div>
+    <!-- 13.skill div  -->
+    <div class="small">
+        <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_1920/t_high_res_template/categories/category_v2/category_3cffdf20.png"
+            alt="">
+
+    </div>
+
+    
+    <!-- 14.footer div  -->
+    <div id="footer">
+        <div class="footer-content">
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="about.html">About Us</a>
+                <a href="">Terms & Conditions</a>
+                <a href="">Privacy Policy</a>
+            </div>
+            
+            <!-- Services -->
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <a href="product.html">Men's Salon</a>
+                <a href="">Cleaning Services</a>
+                <a href="">Appliance Repair</a>
+            </div>
+            
+            <!-- App Download -->
+            <div class="footer-section app-section">
+                <h3>Download Our App</h3>
+                <div class="app-buttons">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="Google Play Store">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-brand">
+                <h2>HelpMate</h2>
+                <p>Your trusted home services partner</p>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2025 HelpMate Technologies India Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- login  -->
+
+    <!-- black layer 1 -->
+    <div class="overLayer1"></div>
+    <!-- login form  -->
+    <!-- logout 
+    <form action="" id="logOutForm">
+        <button id="logout">Log Out</button>
+    </form> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="login.js"></script>
+
+  <!-- NEW: scrollToService function -->
+  <script>
+    function scrollToService() {
+      const query = document.getElementById('serviceInput').value.trim().toLowerCase();
+      if (!query) return;
+      const items = document.querySelectorAll('#div2 > div');
+      let found = false;
+      items.forEach(div => {
+        const name = div.querySelector('span').textContent.trim().toLowerCase();
+        if (name === query) {
+          div.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          div.style.backgroundColor = 'rgba(252,228,127,0.6)';
+          setTimeout(() => div.style.backgroundColor = '', 2000);
+          found = true;
+        }
+      });
+      if (!found) alert('Service not found!');
+    }
+
+    // Mobile menu toggle function for new navbar
+    function toggleMobileNav() {
+      const mobileNav = document.getElementById('mobileNav');
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      
+      mobileNav.classList.toggle('active');
+      menuBtn.classList.toggle('active');
+    }
+
+    // Legacy mobile menu toggle function (if needed)
+    function toggleMobileMenu() {
+      const navBar = document.getElementById('navBar');
+      const toggle = document.querySelector('.mobile-menu-toggle');
+      
+      if (navBar) {
+        navBar.classList.toggle('mobile-active');
+      }
+      if (toggle) {
+        toggle.classList.toggle('active');
+      }
+    }
+
+    // Smooth scroll for navbar links
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.nav-link[href^="#"], .mobile-nav-link[href^="#"]');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href.startsWith('#') && href !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+              });
+              
+              // Close mobile menu if open
+              const mobileNav = document.getElementById('mobileNav');
+              if (mobileNav.classList.contains('active')) {
+                toggleMobileNav();
+              }
+            }
+          }
+        });
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(e) {
+        const mobileNav = document.getElementById('mobileNav');
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        
+        if (!mobileNav.contains(e.target) && !menuBtn.contains(e.target)) {
+          mobileNav.classList.remove('active');
+          menuBtn.classList.remove('active');
+        }
+      });
+    });
+
+    function showComingSoonMessage() {
+      // Create modal backdrop
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        backdrop-filter: blur(5px);
+      `;
+
+      // Create modal content
+      const modalContent = document.createElement('div');
+      modalContent.style.cssText = `
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+      `;
+
+      modalContent.innerHTML = `
+        <div style="color: #f59e0b; font-size: 3rem; margin-bottom: 1rem;">
+          🚧
+        </div>
+        <h3 style="color: #1f2937; font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">
+          Service Under Development
+        </h3>
+        <p style="color: #6b7280; margin-bottom: 1.5rem; line-height: 1.5;">
+          This service is currently in building progress. Please explore our 
+          <strong style="color: #3b82f6;">Men's Salon</strong> services till then!
+        </p>
+        <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+          <button id="closeModal" 
+                  style="background: #6b7280; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; font-weight: 600; transition: background 0.3s; margin: 0.25rem;">
+            Close
+          </button>
+          <button id="exploreSalon" 
+                  style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; cursor: pointer; font-weight: 600; transition: transform 0.3s; margin: 0.25rem;">
+            Explore Men's Salon
+          </button>
+        </div>
+      `;
+
+      modal.appendChild(modalContent);
+      document.body.appendChild(modal);
+
+      // Add event listeners for buttons
+      const closeBtn = modal.querySelector('#closeModal');
+      const exploreBtn = modal.querySelector('#exploreSalon');
+
+      closeBtn.addEventListener('click', () => {
+        modal.remove();
+      });
+
+      exploreBtn.addEventListener('click', () => {
+        window.open('product.html', '_blank');
+        modal.remove();
+      });
+
+      // Animate modal appearance
+      setTimeout(() => {
+        modalContent.style.transform = 'scale(1)';
+      }, 100);
+
+      // Close modal on backdrop click
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.remove();
+        }
+      });
+
+      // Add hover effects to buttons
+      closeBtn.addEventListener('mouseenter', () => {
+        closeBtn.style.background = '#4b5563';
+      });
+      
+      closeBtn.addEventListener('mouseleave', () => {
+        closeBtn.style.background = '#6b7280';
+      });
+
+      exploreBtn.addEventListener('mouseenter', () => {
+        exploreBtn.style.transform = 'translateY(-2px)';
+        exploreBtn.style.boxShadow = '0 8px 15px rgba(0, 0, 0, 0.2)';
+      });
+      
+      exploreBtn.addEventListener('mouseleave', () => {
+        exploreBtn.style.transform = 'translateY(0)';
+        exploreBtn.style.boxShadow = 'none';
+      });
+    }
+  </script>
+
+</body>
+
+</html>
