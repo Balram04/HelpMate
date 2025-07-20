@@ -1,7 +1,7 @@
 # 🏠 HelpMate - Home Services Platform
 
 <div align="center">
-  <img src="https://via.placeholder.com/600x200/111827/ffffff?text=HelpMate+Home+Services" alt="HelpMate Banner">
+  <img src="##############" alt="HelpMate Banner">
 </div>
 
 ## 📋 Table of Contents
@@ -267,15 +267,11 @@ We welcome contributions! Please follow these steps:
 - Comment complex JavaScript functions
 - Maintain responsive design principles
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 📞 Contact
 
 **Balram Singh** - Project Founder & Developer
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: contact@helpmate.com
+- GitHub: [@Balram04](https://github.com/yourusername)
+- Email: Balram@helpmate.com
 
 ## 🙏 Acknowledgments
 
@@ -288,6 +284,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <div align="center">
-  <p>Made with ❤️ by Balram Singh</p>
+  <p>Made with ❤️ by Balram Prajapati</p>
   <p>© 2025 HelpMate. All rights reserved.</p>
 </div>
