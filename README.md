@@ -1,7 +1,7 @@
 # 🏠 HelpMate - Home Services Platform
 
 <div align="center">
-  <img src="##############" alt="HelpMate Banner">
+ <a href="https://balram04.github.io/HelpMate/"> Live Demo</a>
 </div>
 
 ## 📋 Table of Contents
